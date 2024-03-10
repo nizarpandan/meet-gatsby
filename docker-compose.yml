@@ -1,0 +1,10 @@
+services:
+  frontend:
+    image: rotaba/frontend:latest
+    container_name: rotaba-frontend
+    restart: unless-stopped
+    build:
+      context: /rotaba-app
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000

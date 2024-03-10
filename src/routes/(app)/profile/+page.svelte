@@ -1,4 +1,4 @@
 <script lang="ts">
 </script>
 
-<h1>Hallo</h1>
+<h1>User Profile</h1>

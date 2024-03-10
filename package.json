@@ -5,7 +5,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build-sys": "vite build --mode sys",
 		"preview": "vite preview",
+		"start": "node build/index.js",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
@@ -36,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@google/generative-ai": "^0.2.1",
 		"bits-ui": "^0.19.3",
 		"clsx": "^2.1.0",
 		"svelte-radix": "^1.0.3",

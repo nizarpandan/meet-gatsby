@@ -15,7 +15,8 @@ const config = {
 		},
 		extend: {
 			width: {
-				'640': '640px',
+				'672': '42rem',
+				'768': '48rem'
 			},
 			colors: {
 				border: "hsl(var(--border) / <alpha-value>)",
