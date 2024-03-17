@@ -1,0 +1,290 @@
+{
+  "id": "cc43a544-de0f-465e-841c-9ce2dfc09dbb",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "Companies": {
+      "name": "Companies",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Name": {
+          "name": "Name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Address": {
+          "name": "Address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "City": {
+          "name": "City",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "State": {
+          "name": "State",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Country": {
+          "name": "Country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Employees": {
+      "name": "Employees",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "EId": {
+          "name": "EId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "FirstName": {
+          "name": "FirstName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "LastName": {
+          "name": "LastName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CompanyId": {
+          "name": "CompanyId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Employees_CompanyId_Companies_Id_fk": {
+          "name": "Employees_CompanyId_Companies_Id_fk",
+          "tableFrom": "Employees",
+          "tableTo": "Companies",
+          "columnsFrom": [
+            "CompanyId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Employees_UserId_Users_Id_fk": {
+          "name": "Employees_UserId_Users_Id_fk",
+          "tableFrom": "Employees",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Employees_EId_unique": {
+          "name": "Employees_EId_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "EId"
+          ]
+        }
+      }
+    },
+    "Roles": {
+      "name": "Roles",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Name": {
+          "name": "Name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "UserRoles": {
+      "name": "UserRoles",
+      "schema": "",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "RoleId": {
+          "name": "RoleId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "UserRoles_UserId_Users_Id_fk": {
+          "name": "UserRoles_UserId_Users_Id_fk",
+          "tableFrom": "UserRoles",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "UserRoles_RoleId_Roles_Id_fk": {
+          "name": "UserRoles_RoleId_Roles_Id_fk",
+          "tableFrom": "UserRoles",
+          "tableTo": "Roles",
+          "columnsFrom": [
+            "RoleId"
+          ],
+          "columnsTo": [
+            "Id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Users": {
+      "name": "Users",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Email": {
+          "name": "Email",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "FirstName": {
+          "name": "FirstName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "LastName": {
+          "name": "LastName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Picture": {
+          "name": "Picture",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Users_Email_unique": {
+          "name": "Users_Email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "Email"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

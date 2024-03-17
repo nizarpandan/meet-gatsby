@@ -2,22 +2,12 @@
 	import { enhance } from "$app/forms";
 	import { Button } from "$lib/components/ui/button";
 	import { Input } from "$lib/components/ui/input";
-	import MgChat from "$lib/components/ui/mg-chat/mg-chat.svelte";
+	// import MgChat from "$lib/components/ui/mg-chat/mg-chat.svelte";
 	import { PaperPlane } from "svelte-radix";
 
 	export let data;
 	export let form;
 
-	const sections = {
-		"Title 1": "paragraph",
-  	"Title 2": "paragraph",
-		"Title 3": "paragraph",
-		"Title 4": "paragraph",
-		"Title 5": "paragraph",
-		"Title 6": "paragraph",
-  	"Title 7": "paragraph",
-		"Title 8": "paragraph",
-	}
 </script>
 
 <div class="lg:ml-64 flex flex-col flex-auto">
@@ -27,9 +17,10 @@
 				<div class="flex flex-col justify-between px-5 mb-3 max-w-3xl mx-auto rounded-lg group">
 					<div class="container mx-auto px-4 max-w-3xl">
 						<!-- <h1>{data.todos}</h1> -->
+						<!-- <h1>{process.env.S3_BUCKET}</h1>
 						{#each Object.entries(sections) as [title, paragraph]}
 							<MgChat/>
-						{/each}
+						{/each} -->
 					</div>
 				</div>
 			</div>

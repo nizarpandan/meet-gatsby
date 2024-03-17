@@ -1,7 +1,10 @@
+import { getAllCompanies } from '$lib/infrastructure/db/repositories/company-repository';
 import type { Actions } from './$types';
 
 let ids: Array<number> = [23, 34, 100, 124, 44];
 export async function load() {
+    const popo = await getAllCompanies();
+    console.log(popo);
     const todos = "hallo";
     return { todos, ids };
 }
