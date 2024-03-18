@@ -2,6 +2,10 @@
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
 	import * as Avatar from "$lib/components/ui/avatar";
 	import { Button } from "$lib/components/ui/button";
+	import { goto } from "$app/navigation";
+	import type { UserType } from "@kinde-oss/kinde-auth-sveltekit";
+
+	export let user: UserType | null;
 </script>
 
 <DropdownMenu.Root>
@@ -20,9 +24,12 @@
 	<DropdownMenu.Content class="w-56" align="end">
 		<DropdownMenu.Label class="font-normal">
 			<div class="flex flex-col space-y-1">
-				<p class="text-sm font-medium leading-none">shadcn</p>
+				<p class="text-sm font-medium leading-none">
+					{user?.given_name}
+					{user?.family_name}
+				</p>
 				<p class="text-xs leading-none text-muted-foreground">
-					m@example.com
+					{user?.email}
 				</p>
 			</div>
 		</DropdownMenu.Label>
@@ -36,14 +43,14 @@
 				Billing
 				<DropdownMenu.Shortcut>⌘B</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item>
+			<DropdownMenu.Item on:click={() => {goto('/settings')}}>
 				Settings
 				<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>New Team</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>
+		<DropdownMenu.Item on:click={() => {goto('/api/auth/logout')}}>
 			Log out
 			<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
 		</DropdownMenu.Item>
